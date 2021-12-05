@@ -12,7 +12,7 @@
                         <div class="card-body">
                 
             
-                        @can('crear-service')
+                        @can('create-service')
                         <a class="btn btn-warning" href="{{ route('blogs.create') }}">New</a>
                         @endcan
             
@@ -21,7 +21,8 @@
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Title</th>
                                     <th style="color:#fff;">Description</th> 
-                                    <th style="color:#fff;">Image</th>                                    
+                                    
+                                    <th style="color:#fff;">Image</th>          
                                     <th style="color:#fff;">Actions</th>                                                                   
                               </thead>
                               <tbody>
@@ -30,6 +31,7 @@
                                 <td style="display: none;">{{ $blog->id }}</td>                                
                                 <td>{{ $blog->titulo }}</td>
                                 <td>{{ $blog->contenido }}</td>
+                               
                                 <td class="border px-14 py-1">
                                     <img src="/imagen/{{ $blog->image }}" height="150" alt="">
                                 </td>

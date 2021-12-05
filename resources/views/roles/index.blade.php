@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
         
-                        @can('crear-rol')
+                        @can('create-role')
                         <a class="btn btn-warning" href="{{ route('roles.create') }}">New</a>                        
                         @endcan
         

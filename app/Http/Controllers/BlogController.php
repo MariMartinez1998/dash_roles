@@ -10,10 +10,10 @@ class BlogController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:ver-service|crear-service|editar-service|borrar-service')->only('index');
-         $this->middleware('permission:crear-service', ['only' => ['create','store']]);
-         $this->middleware('permission:editar-service', ['only' => ['edit','update']]);
-         $this->middleware('permission:borrar-service', ['only' => ['destroy']]);
+         $this->middleware('permission:see-service|create-service|edit-service|delete-service')->only('index');
+         $this->middleware('permission:create-service', ['only' => ['create','store']]);
+         $this->middleware('permission:edit-service', ['only' => ['edit','update']]);
+         $this->middleware('permission:delete-service', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -47,6 +47,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         request()->validate([
+            'id_users' => 'required',
             'titulo' => 'required',
             'contenido' => 'required',
             'image' => 'required|image|mimes:png,jpg,PNG,JPG|max:1024'
@@ -97,7 +98,7 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
          request()->validate([
-            'titulo' => 'required', 'contenido' => 'required', ]);
+            'id_users' => 'required','titulo' => 'required', 'contenido' => 'required', ]);
     
             $prod = $request->all();
     

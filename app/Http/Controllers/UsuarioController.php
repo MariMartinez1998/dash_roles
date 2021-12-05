@@ -14,6 +14,14 @@ use Illuminate\Support\Arr;
 
 class UsuarioController extends Controller
 {
+
+    function __construct()
+    {
+         $this->middleware('permission:see-user|create-user|edit-user|delete-user', ['only' => ['index']]);
+         $this->middleware('permission:create-user', ['only' => ['create','store']]);
+         $this->middleware('permission:edit-user', ['only' => ['edit','update']]);
+         $this->middleware('permission:delete-user', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,6 +36,7 @@ class UsuarioController extends Controller
         //Con paginación
         $usuarios = User::paginate(5);
         return view('usuarios.index',compact('usuarios'));
+        
 
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $usuarios->links() !!}
     }

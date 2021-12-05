@@ -30,6 +30,14 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                   <label for="id_users">Id del usuario</label>
+                                   <input type="text" name="id_users" class="form-control" value="{{ $blog->id_users }}">
+                                </div>
+                            </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
                                    <label for="titulo">Title</label>
                                    <input type="text" name="titulo" class="form-control" value="{{ $blog->titulo }}">
                                 </div>
@@ -38,7 +46,9 @@
                                                     
                                 <div class="form-floating">
                                 <label for="contenido">Description</label>
-                                <textarea class="form-control" name="contenido" style="height: 100px">{{ $blog->contenido }}</textarea>                                
+                                <textarea class="form-control" name="contenido" style="height: 100px">{{ $blog->contenido }}</textarea>     
+                                
+                                
                                 
                                 <div class="col-xs-12 col-sm-12 col-md-12">                  
                                 <div class="form-floating">

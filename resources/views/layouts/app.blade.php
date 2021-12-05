@@ -30,11 +30,14 @@
         <div class="navbar-bg"></div>
         <nav class="navbar navbar-expand-lg main-navbar">
             @include('layouts.header')
-
         </nav>
+
+        @if(Auth::user()->id == 1)
         <div class="main-sidebar main-sidebar-postion">
             @include('layouts.sidebar')
         </div>
+        @endif
+        
         <!-- Main Content -->
         <div class="main-content">
             @yield('content')
