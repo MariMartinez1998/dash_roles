@@ -7,7 +7,7 @@
     <a class="nav-link" href="/usuarios">
         <i class=" fas fa-users"></i><span>Users</span>
     </a>
-    <a class="nav-link" href="/roles">
+    <a class="nav-link" href="/roles" style="display: none;">
         <i class=" fas fa-user-lock"></i><span>Roles</span>
     </a>
     <a class="nav-link" href="/blogs">

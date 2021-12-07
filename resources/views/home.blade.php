@@ -28,7 +28,7 @@
                                         </div>                                    
                                     </div>
                                     
-                                    <div class="col-md-4 col-xl-4">
+                                    <div class="col-md-4 col-xl-4"style="display: none;" >
                                         <div class="card bg-c-gray order-card">
                                             <div class="card-block">
                                             <h5>Roles</h5>                                               

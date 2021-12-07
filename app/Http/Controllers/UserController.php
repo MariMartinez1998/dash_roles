@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-//agregamos lo siguiente
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -12,33 +11,18 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
-
-    function __construct()
-    {
-         $this->middleware('permission:see-user|create-user|edit-user|delete-user', ['only' => ['index']]);
-         $this->middleware('permission:create-user', ['only' => ['create','store']]);
-         $this->middleware('permission:edit-user', ['only' => ['edit','update']]);
-         $this->middleware('permission:delete-user', ['only' => ['destroy']]);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {      
-        //Sin paginación
-        /* $usuarios = User::all();
-        return view('usuarios.index',compact('usuarios')); */
+    public function index()
+    {
+        $users = User::paginate(5);
+        return view('Users.index', compact('users'));
 
-        //Con paginación
-        $usuarios = User::paginate(5);
-        return view('usuarios.index',compact('usuarios'));
-        
-
-        //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $usuarios->links() !!}
     }
 
     /**
@@ -48,9 +32,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //aqui trabajamos con name de las tablas de users
         $roles = Role::pluck('name','name')->all();
-        return view('usuarios.crear',compact('roles'));
+        return view('Users.crear',compact('roles'));
     }
 
     /**
@@ -61,27 +44,21 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $this->validate($request,[
             'name' => 'required',
-            'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'phone' => 'required',
-            'city' => 'required',
-            'street' => 'required',
-            'state' => 'required',
-            'zip_code' => 'required',
-            'roles' => 'required'
-            
+            'roles' => 'required',
         ]);
-    
+
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-    
+        
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-    
-        return redirect()->route('usuarios.index');
+
+        return redirect()->route('Users.index');
+        
     }
 
     /**
@@ -92,7 +69,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-                
+        //
     }
 
     /**
@@ -106,10 +83,9 @@ class UsuarioController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
-    
-        return view('usuarios.editar',compact('user','roles','userRole'));
+        return view('Users.editar', compact('user' , 'roles', 'userRole'));
+
     }
-    
 
     /**
      * Update the specified resource in storage.
@@ -120,32 +96,27 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'phone' => 'required',
-            'city' => 'required',
-            'street' => 'required',
-            'state' => 'required',
-            'zip_code' => 'required',
-            'roles' => 'required'
+            'roles' => 'required',
         ]);
-    
+
         $input = $request->all();
-        if(!empty($input['password'])){ 
+
+        if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
-            $input = Arr::except($input,array('password'));    
+            $input = Arr::except($input, array('password'));
         }
-    
+
         $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-    
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+
         $user->assignRole($request->input('roles'));
-    
-        return redirect()->route('usuarios.index');
+        return redirect()->route('Users.index');
     }
 
     /**
@@ -157,6 +128,6 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('usuarios.index');
+        return redirect()->route('Users.index');
     }
 }

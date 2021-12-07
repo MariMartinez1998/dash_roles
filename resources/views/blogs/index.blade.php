@@ -18,7 +18,8 @@
             
                         <table class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">                                     
-                                    <th style="display: none;">ID</th>
+                                    <th style="color:#fff;">ID</th>
+                                    <th style="color:#fff;">ID-user</th>
                                     <th style="color:#fff;">Title</th>
                                     <th style="color:#fff;">Description</th> 
                                     
@@ -28,7 +29,8 @@
                               <tbody>
                             @foreach ($blogs as $blog)
                             <tr>
-                                <td style="display: none;">{{ $blog->id }}</td>                                
+                                <td>{{ $blog->id }}</td>    
+                                <td>{{ $blog->id_users }}</td>                              
                                 <td>{{ $blog->titulo }}</td>
                                 <td>{{ $blog->contenido }}</td>
                                

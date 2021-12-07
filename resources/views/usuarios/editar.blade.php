@@ -33,8 +33,44 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <label for="last_name">Name</label>
+                                    {!! Form::text('last_name', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
                                     <label for="email">E-mail</label>
                                     {!! Form::text('email', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    {!! Form::text('phone', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    {!! Form::text('city', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="street">Street</label>
+                                    {!! Form::text('street', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    {!! Form::text('state', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="zip_code">Zip Code</label>
+                                    {!! Form::text('zip_code', null, array('class' => 'form-control')) !!}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

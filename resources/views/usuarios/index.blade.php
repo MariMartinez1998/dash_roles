@@ -18,17 +18,24 @@
                          
                             <table class="table table-striped mt-2">
                               <thead style="background-color:#6777ef">                                     
-                                  <th style="display: none;">ID</th>
+                                  <th style="color:#fff;">ID</th>
                                   <th style="color:#fff;">Name</th>
+                                  <th style="color:#fff;">Last name</th>
                                   <th style="color:#fff;">E-mail</th>
                                   <th style="color:#fff;">Rol</th>
+                                  <th style="color:#fff;">Phone</th>
+                                  <th style="color:#fff;">City</th>
+                                  <th style="color:#fff;">Street</th>
+                                  <th style="color:#fff;">State</th>
+                                  <th style="color:#fff;">Zip Code</th>
                                   <th style="color:#fff;">Actions</th>                                                                   
                               </thead>
                               <tbody>
                                 @foreach ($usuarios as $usuario)
                                   <tr>
-                                    <td style="display: none;">{{ $usuario->id }}</td>
+                                    <td>{{ $usuario->id }}</td>
                                     <td>{{ $usuario->name }}</td>
+                                    <td>{{ $usuario->last_name }}</td>
                                     <td>{{ $usuario->email }}</td>
                                     <td>
                                       @if(!empty($usuario->getRoleNames()))
@@ -37,8 +44,13 @@
                                         @endforeach
                                       @endif
                                     </td>
-
+                                    <td>{{ $usuario->phone }}</td>
+                                    <td>{{ $usuario->city }}</td>
+                                    <td>{{ $usuario->street }}</td>
+                                    <td>{{ $usuario->state }}</td>
+                                    <td>{{ $usuario->zip_code }}</td>
                                     <td>     
+                                      
                                     @can('edit-user')                             
                                       <a class="btn btn-info" href="{{ route('usuarios.edit',$usuario->id) }}">Edit</a>
                                       @endcan
